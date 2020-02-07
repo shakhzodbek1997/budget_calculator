@@ -11,13 +11,40 @@ const initialExpenses = [
     {id: uuid(), charge: "credit card bill", amount: 1200}
 ];
 function App() {
+    // ********************STATE VALUES *************************
+    //ALL expenses, add expenses
     const [expenses, setExpenses] = useState(initialExpenses);
+
+    //single expense
+    const [charge, setCharge] = useState('');
+
+    //single amount
+    const [amount, setAmount] = useState('');
+
+    // ******************** FUNCTIONALITY *************************
+
+    const handleCharge = e => {
+        console.log(`charge : ${e.target.value}`);
+
+        setCharge(e.target.value)
+    };
+    const handleAmount = e => {
+        console.log(`amount : ${e.target.value}`);
+
+        setAmount (e.target.value)
+    };
+    const handleSubmit = e => {
+      e.preventDefault();
+    };
     return (
         <>
             <Alert/>
             <h1>budget calculator </h1>
             <main className="App">
-                <ExpenseForm/>
+                <ExpenseForm charge={charge} amount={amount}
+                             handleCharge={handleCharge}
+                             handleAmount={handleAmount}
+                             handleSubmit={handleSubmit}/>
                 <ExpenseList expenses={expenses}/>
             </main>
             <h1>
