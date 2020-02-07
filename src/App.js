@@ -21,26 +21,44 @@ function App() {
 
     //single amount
     const [amount, setAmount] = useState('');
+    //alert
+    const [alert, setAlert] = useState({show: false});
 
     // ******************** FUNCTIONALITY *************************
-
+    //handle charge
     const handleCharge = e => {
         setCharge(e.target.value)
     };
+    //handle Amount
     const handleAmount = e => {
         setAmount(e.target.value)
     };
+    //handle Alert
+    const handleAlert = ({type, text}) => {
+        setAlert({show: true, type, text});
+        setTimeout(() => {
+            setAlert({show: false});
+        }, 3000)
+    };
+
+    // handle Submit
     const handleSubmit = e => {
         e.preventDefault();
-        if (charge !== '' && amount > 0){
-            const singleExpense = {id:uuid(),charge, amount};
-            setExpenses([singleExpense]);
-        }else{
+        if (charge !== '' && amount > 0) {
+            const singleExpense = {id: uuid(), charge, amount};
+            setExpenses([...expenses, singleExpense]);
+            handleAlert({type:'success', text:'Item added'});
+            setCharge('');
+            setAmount('');
+        } else {
             //handle alert called
+            handleAlert({type:'danger',text:"charge can't be empty value and amount " +
+                    "value has to be bigger than the thero"})
         }
     };
     return (
         <>
+            {alert.show && <Alert type={alert.type} text={alert.text}/>}
             <Alert/>
             <h1>budget calculator </h1>
             <main className="App">
@@ -55,7 +73,7 @@ function App() {
             <h1>
                 total spending : <span className="total">
                 ${expenses.reduce((acc, curr) => {
-                return (acc += curr.amount);
+                return (acc += parseInt(curr.amount));
             }, 0)}
             </span>
             </h1>
