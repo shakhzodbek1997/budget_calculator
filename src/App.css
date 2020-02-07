@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 :root {
-    --primaryColor: rgba(241, 80, 37, 0.67);
+    --primaryColor: rgb(241, 80, 37);
     --mainWhite: #fff;
     --mainBlack: #222;
     --mainGrey: #9e9e9e;
@@ -17,7 +17,7 @@ body {
     background-size: cover;
     color: var(--mainBlack);
     font-family: "Roboto", sans-serif;
-    height: 100vh;
+    height: 100%;
 }
 h1 {
     text-align: center;
@@ -26,13 +26,17 @@ h1 {
     color: var(--mainWhite);
     letter-spacing: 5px;
 }
+::placeholder{
+    color: #cdcdcd;
+}
 .App {
+    border: 1px solid var(--mainWhite);
     margin: 0 auto;
     max-width: 1280px;
     width: 90%;
-    background: var(--mainWhite);
+    background-color: rgba(255, 255, 255, 0.31);
     padding-bottom: 2rem;
-    border-radius: 2px;
+    border-radius: 5px;
 }
 .form-center {
     display: flex;
@@ -44,7 +48,7 @@ h1 {
 }
 label {
     display: block;
-    color: var(--mainGrey);
+    color: var(--mainWhite);
     font-size: 1rem;
     text-transform: capitalize;
 }
@@ -52,7 +56,7 @@ label {
 .form-control {
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid var(--mainGrey);
+    border-bottom: 1px solid var(--mainWhite);
     border-radius: 0;
     outline: none;
     height: 3rem;
@@ -60,6 +64,7 @@ label {
     font-size: 16px;
     margin: 0 0 8px 0;
     padding: 0;
+    color: var(--mainWhite);
 }
 .btn {
     text-decoration: none;
@@ -187,4 +192,7 @@ label {
     .info {
         flex: 0 0 50%;
     }
+}
+li:hover{
+    cursor: pointer;
 }
